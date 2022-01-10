@@ -6,24 +6,49 @@ const pattern = /https?:\/\/[^\s]+/;
 
 /**
  * @param {string} message React minified message
- * @returns {string} Decoded message
+ * @returns {object} Decoded message, number and url
  */
-module.exports = function decode(message) {
+function getDetails(message) {
+	const fallback = {
+		message,
+		invariant: undefined,
+		url: undefined,
+	};
+
 	if (!message.startsWith('Minified React error')) {
-		return message;
+		return fallback;
 	}
 
 	try {
 		const [ url ] = message.match(pattern);
 		const { searchParams } = new URL(url);
 		const args = searchParams.getAll('args[]');
-		const invariant = searchParams.getAll('invariant');
+		const [ invariant ] = searchParams.getAll('invariant');
+
+		if (!invariant) {
+			return fallback;
+		}
+
 		if (!collection[invariant]) {
 			throw new RangeError(`Collection does not include invariant "${invariant}"`);
 		}
 
-		return parse(collection[invariant], args);
+		return {
+			message: parse(collection[invariant], args),
+			invariant,
+			url,
+		};
 	} catch (error) {
-		return message;
+		return fallback;
 	}
-};
+}
+
+/**
+ * @param {string} message React minified message
+ * @returns {string} Decoded message
+ */
+const decode = message => getDetails(message).message;
+
+decode.details = message => getDetails(message);
+
+module.exports = decode;

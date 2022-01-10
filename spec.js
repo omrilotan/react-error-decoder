@@ -11,6 +11,27 @@ describe('react-error-decoder', () => {
 	});
 
 	it.each([
+		[
+			'Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.',
+			'Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.',
+		],
+	])('get all details for error', (encoded, decoded) => {
+		expect(decode.details(encoded)).toEqual({
+			message: decoded,
+			url: 'https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]=',
+			invariant: '130',
+		});
+	});
+
+	it('creates an object from regular error messages', () => {
+		expect(decode.details('Something must have gone horribly wrong')).toEqual({
+			message: 'Something must have gone horribly wrong',
+			url: undefined,
+			invariant: undefined,
+		});
+	});
+
+	it.each([
 		'visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message',
 		'Minified React error #1: Something else has gone wrong.',
 		'Minified React error #1: Something else has gone wrong. https://www.facebook.com',
