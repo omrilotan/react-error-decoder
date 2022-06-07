@@ -1,3 +1,7 @@
+# 1.1.2 2022-06-07
+## Update error dictionary
+- Add: 432, 433
+
 # 1.1.1 2022-03-17
 ## Update error dictionary
 - Modify: 355, 418

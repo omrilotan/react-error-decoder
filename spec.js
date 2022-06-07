@@ -22,6 +22,13 @@ describe('react-error-decoder', () => {
 			invariant: '130',
 		});
 	});
+	it.each([
+		[
+			'Minified React error #223; visit https://reactjs.org/docs/error-decoder.html?invariant=223&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.',
+		],
+	])('Leave an error not in dictionary as is', encoded => {
+		expect(decode(encoded)).toBe(encoded);
+	});
 
 	it('creates an object from regular error messages', () => {
 		expect(decode.details('Something must have gone horribly wrong')).toEqual({
