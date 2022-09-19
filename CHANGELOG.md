@@ -1,3 +1,7 @@
+# 1.1.4 2022-09-19
+## Update error dictionary
+- Add: 436-440
+
 # 1.1.3 2022-07-27
 ## Update error dictionary
 - Add: 434, 435
