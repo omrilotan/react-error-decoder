@@ -25,7 +25,7 @@ decode('Something must have gone horribly wrong')
 
 Get some more details
 ```js
-decode('Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.')
+decode.details('Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.')
 
 // Output:
 {
