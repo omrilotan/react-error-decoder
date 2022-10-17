@@ -7,23 +7,27 @@ In the minified production build of React, they avoid sending down full error me
 This small tool is meant to mitigate this gap.
 
 ```js
-const decode = require('react-error-decoder');
+import { decode } from "react-error-decoder";
 
-decode('Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.')
+decode(
+  "Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+);
 
 // Output:
-'Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.'
+("Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.");
 ```
 
 Safe for any error message
+
 ```js
-decode('Something must have gone horribly wrong')
+decode("Something must have gone horribly wrong");
 
 // Output:
-'Something must have gone horribly wrong'
+("Something must have gone horribly wrong");
 ```
 
 Get some more details
+
 ```js
 decode.details('Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.')
 
