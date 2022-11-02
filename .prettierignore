@@ -1,2 +1,3 @@
 .*
-./index.*
+collection.json
+/index*

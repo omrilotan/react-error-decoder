@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.1
+
+- Add: 456-460
+- Some phrasing updates
+
 ## 2.0.0
 
 ### Breaking change
