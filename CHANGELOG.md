@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.2
+
+- Add: 461-465
+- One phrasing update (440)
+
 ## 2.0.1
 
 - Add: 456-460
