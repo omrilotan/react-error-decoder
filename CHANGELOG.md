@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.5
+
+- Update list source
+- Add: 477-500
+
 ## 2.0.4
 
 - Add: 476

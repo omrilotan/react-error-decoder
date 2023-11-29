@@ -1,6 +1,6 @@
 {
   "name": "react-error-decoder",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "⚛︎ Decode React minified error message",
   "keywords": [
     "react",
@@ -45,7 +45,7 @@
   },
   "types": "index.d.ts",
   "scripts": {
-    "prepare": "curl https://legacy.reactjs.org/page-data/docs/error-decoder.html/page-data.json | jq '.result.data.errorCodesJson.internal.contentDigest' -r > src/collection.json",
+    "prepare": "curl https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json > src/collection.json",
     "build": "./scripts/build.sh",
     "format": "prettier --write .",
     "lint": "prettier --check .",
