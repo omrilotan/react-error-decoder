@@ -37,7 +37,7 @@ function decodeDetails(message: string): {
 
 		if (!collection[invariant]) {
 			throw new RangeError(
-				`Collection does not include invariant "${invariant}"`
+				`Collection does not include invariant "${invariant}"`,
 			);
 		}
 

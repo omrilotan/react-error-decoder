@@ -25,7 +25,7 @@ describe("react-error-decoder", (): void => {
 			"NGABuilder(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.",
 		],
 	])("decodes messages successfully", (input: string, message: string): void =>
-		expect(decode(input)).toBe(message)
+		expect(decode(input)).toBe(message),
 	);
 	test("Leave an error not in dictionary as is", (): void => {
 		const input =
@@ -45,7 +45,7 @@ describe("react-error-decoder", (): void => {
 		"Minified React error #1: Something else has gone wrong. https://www.facebook.com",
 		"Minified React error #1: Something else has gone wrong. https://www.facebook.com?invariant=900",
 	])("falls back to original message", (message: string): void =>
-		expect(decode(message)).toBe(message)
+		expect(decode(message)).toBe(message),
 	);
 	test("updated snapshot", (): void =>
 		expect(decode.collection).toMatchSnapshot());

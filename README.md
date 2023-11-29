@@ -10,7 +10,7 @@ This small tool is meant to mitigate this gap.
 import { decode } from "react-error-decoder";
 
 decode(
-  "Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+  "Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
 );
 
 // Output:
