@@ -45,3 +45,5 @@ decode.details('Minified React error #130; visit https://reactjs.org/docs/error-
   url: undefined
 }
 ```
+
+> Uses [source list from React repo](https://github.com/facebook/react/blob/main/scripts/error-codes/codes.json)
