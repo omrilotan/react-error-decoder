@@ -38,11 +38,10 @@ jobs:
             git push origin $BRANCH
             exit 1
           fi
-      - name: Add NPM token
+      - name: Build and Publish
         if: github.ref == 'refs/heads/main'
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-      - name: Build and Publish
-        if: github.ref == 'refs/heads/main'
-        run: npx @lets/publish
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          npx @lets/publish
