@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.6
+
+- Add: 501-509
+- Update lots of already existing error messages (phrasing, typos, links, etc.)
+
 ## 2.0.5
 
 - Update list source
