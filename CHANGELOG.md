@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.7
+
+- Add: 510-529
+- Update existing error messages
+
 ## 2.0.6
 
 - Add: 501-509
