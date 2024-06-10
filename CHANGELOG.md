@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.8
+
+- Add: 530
+- Update error messages
+
 ## 2.0.7
 
 - Add: 510-529
