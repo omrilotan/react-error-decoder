@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.10
+
+- Add 541
+- Rephrase some error messages
+
 ## 2.0.9
 
 - Add 530-540
