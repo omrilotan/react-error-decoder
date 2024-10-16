@@ -1,4 +1,3 @@
-import { URL } from "node:url";
 import collection from "./collection.json";
 
 type Collection = Record<string, string>;
