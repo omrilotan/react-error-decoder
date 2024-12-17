@@ -426,7 +426,7 @@ https://react.dev/link/hydration-mismatch%s",
   "46": "renderToString(): You must pass a valid ReactElement.",
   "460": "Suspense Exception: This is not a real error! It's an implementation detail of \`use\` to interrupt the current render. You must either rethrow it immediately, or move the \`use\` call outside of the \`try/catch\` block. Capturing without rethrowing will lead to unexpected behavior.
 
-To handle async errors, wrap your component in an error boundary, or call the promise's \`.catch\` method and pass the result to \`use\`",
+To handle async errors, wrap your component in an error boundary, or call the promise's \`.catch\` method and pass the result to \`use\`.",
   "461": "This is not a real error. It's an implementation detail of React's selective hydration feature. If this leaks into userspace, it's a bug in React. Please file an issue.",
   "462": "Unexpected SuspendedReason. This is a bug in React.",
   "463": "ReactDOMServer.renderToNodeStream(): The Node Stream API is not available in Bun. Use ReactDOMServer.renderToReadableStream() instead.",
@@ -468,7 +468,7 @@ To handle async errors, wrap your component in an error boundary, or call the pr
   "496": "Only objects or functions can be passed to taintObjectReference. Try taintUniqueValue instead.",
   "497": "Only objects or functions can be passed to taintObjectReference.",
   "498": "Only plain objects, and a few built-ins, can be passed to Client Components from Server Components. Classes or null prototypes are not supported.%s",
-  "499": "Only plain objects, and a few built-ins, can be passed to Server Actions. Classes or null prototypes are not supported.%s",
+  "499": "Only plain objects, and a few built-ins, can be passed to Server Functions. Classes or null prototypes are not supported.%s",
   "5": "update(): %s expects a spec of type 'object'; got %s",
   "50": "DOMProperty: Value can be one of boolean, overloaded boolean, or numeric value, but not a combination: %s",
   "500": "React expected a headers state to exist when emitEarlyPreloads was called but did not find it. This suggests emitEarlyPreloads was called more than once per request. This is a bug in React.",
@@ -523,6 +523,10 @@ Learn more: https://react.dev/warnings/version-mismatch",
   "54": "Danger: Did not assign to every index of resultList.",
   "540": "String chunks need to be passed in their original shape. Not split into smaller string chunks. This is a bug in the wiring of the React streams.",
   "541": "Compared context values must be arrays",
+  "542": "Suspense Exception: This is not a real error! It's an implementation detail of \`useActionState\` to interrupt the current render. You must either rethrow it immediately, or move the \`useActionState\` call outside of the \`try/catch\` block. Capturing without rethrowing will lead to unexpected behavior.
+
+To handle async errors, wrap your component in an error boundary.",
+  "543": "Expected a ResourceEffectUpdate to be pushed together with ResourceEffectIdentity. This is a bug in React.",
   "55": "Danger: Expected markup to render %s nodes, but rendered %s.",
   "56": "Cannot render markup in a worker thread. Make sure \`window\` and \`document\` are available globally before requiring React when unit testing or use ReactDOMServer.renderToString() for server rendering.",
   "57": "Missing markup.",

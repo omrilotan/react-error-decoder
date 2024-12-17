@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.1.1
+
+- Add 542, 543
+
 ## 2.1.0
 
 - Use native URL class available in the environment instead of importing from `node:url` module
