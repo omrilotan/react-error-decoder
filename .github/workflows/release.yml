@@ -7,12 +7,12 @@ jobs:
     permissions:
       actions: read
       contents: write
-    strategy:
-      matrix:
-        node-version:
-          - "20"
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --version
       - run: npm i
       - run: npm t
       - run: npm run format

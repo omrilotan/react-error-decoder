@@ -4,8 +4,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "esnext",
-    "types": ["@types/jest", "@types/node"],
+    "types": ["@types/node"],
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "noEmit": true,
     "resolveJsonModule": true

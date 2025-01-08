@@ -1,4 +1,13 @@
-import { decode } from ".";
+import {
+	afterEach,
+	before,
+	beforeEach,
+	describe,
+	snapshot,
+	test,
+} from "node:test";
+import { deepEqual, equal, ok } from "node:assert/strict";
+import { decode } from "./index.ts";
 
 describe("react-error-decoder", (): void => {
 	test("get all details for error", (): void => {
@@ -9,9 +18,9 @@ describe("react-error-decoder", (): void => {
 		const url =
 			"https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]=";
 		const invariant = "130";
-		expect(decode.details(input)).toEqual({ message, url, invariant });
+		deepEqual(decode.details(input), { message, url, invariant });
 	});
-	test.each([
+	[
 		[
 			"Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
 			"Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.",
@@ -24,29 +33,30 @@ describe("react-error-decoder", (): void => {
 			"Minified React error #152; visit https://legacy.reactjs.org/docs/error-decoder.html?invariant=152&args[]=NGABuilder for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
 			"Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.",
 		],
-	])("decodes messages successfully", (input: string, message: string): void =>
-		expect(decode(input)).toBe(message),
+	].forEach(([input, message]: string[]) =>
+		test("decodes messages successfully", (): void => {
+			equal(decode(input), message);
+		}),
 	);
+
 	test("Leave an error not in dictionary as is", (): void => {
 		const input =
 			"Minified React error #223; visit https://reactjs.org/docs/error-decoder.html?invariant=223&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.";
-		expect(decode(input)).toBe(input);
+		equal(decode(input), input);
 	});
 	test("creates an object from regular error messages", (): void => {
-		expect(decode.details("Something must have gone horribly wrong")).toEqual({
+		deepEqual(decode.details("Something must have gone horribly wrong"), {
 			message: "Something must have gone horribly wrong",
 			url: undefined,
 			invariant: undefined,
 		});
 	});
-	test.each([
+	[
 		"visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message",
 		"Minified React error #1: Something else has gone wrong.",
 		"Minified React error #1: Something else has gone wrong. https://www.facebook.com",
 		"Minified React error #1: Something else has gone wrong. https://www.facebook.com?invariant=900",
-	])("falls back to original message", (message: string): void =>
-		expect(decode(message)).toBe(message),
-	);
-	test("updated snapshot", (): void =>
-		expect(decode.collection).toMatchSnapshot());
+	].forEach((message: string): void => equal(decode(message), message));
+	test("updated snapshot", (context): void =>
+		context.assert.snapshot(decode.collection));
 });

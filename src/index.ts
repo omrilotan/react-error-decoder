@@ -1,4 +1,4 @@
-import collection from "./collection.json";
+import collection from "./collection.json" with { type: "json" };
 
 type Collection = Record<string, string>;
 
@@ -26,6 +26,7 @@ function decodeDetails(message: string): {
 
 	try {
 		const [url] = message.match(pattern) || [];
+		// @ts-ignore - Use the global URL, which is available in Node, workers and browsers
 		const { searchParams } = new URL(url);
 		const args = searchParams.getAll("args[]");
 		const [invariant] = searchParams.getAll("invariant");
