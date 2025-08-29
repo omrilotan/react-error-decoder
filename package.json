@@ -1,6 +1,6 @@
 {
   "name": "react-error-decoder",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "⚛︎ Decode React minified error message",
   "keywords": [
     "react",
