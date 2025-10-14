@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.1.9
+
+- Phrasing update for 566
+
 ## 2.1.8
 
 - Add 566
