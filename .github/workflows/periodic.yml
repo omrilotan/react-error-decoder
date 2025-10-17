@@ -15,13 +15,13 @@ jobs:
           node-version: "22"
       - run: node --version
       - run: npm i
-      - run: npm run prepare
+      - run: node --run prepare
       - name: Create issue if tests fail
         env:
           REPO: ${{ github.repository }}
           TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm t || curl -X "POST" "https://api.github.com/repos/${REPO}/issue" \
+          node --run test || curl -X "POST" "https://api.github.com/repos/${REPO}/issue" \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             -H "Authorization: Bearer ${TOKEN}" \

@@ -49,7 +49,7 @@
     "build": "./scripts/build.sh",
     "format": "prettier --write .",
     "test": "./scripts/test.sh",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "node --run build"
   },
   "devDependencies": {
     "esbuild": "^0.24.2",
