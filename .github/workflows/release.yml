@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
       - run: node --version
       - run: npm i
       - run: node --run test
@@ -23,6 +23,8 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           if [ "$(git diff --quiet && echo 0 || echo $?)" -gt 0 ]; then
+            git config --global user.email "${USERNAME}@users.noreply.github.com"
+            git config --global user.name "${USERNAME}"
             git commit -am "😎 Autofix"
             git push origin $BRANCH
             exit 1

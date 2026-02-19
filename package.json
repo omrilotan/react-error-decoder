@@ -1,6 +1,6 @@
 {
   "name": "react-error-decoder",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "description": "⚛︎ Decode React minified error message",
   "keywords": [
     "react",
@@ -46,14 +46,16 @@
   "types": "index.d.ts",
   "scripts": {
     "prepare": "curl https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json > src/collection.json",
-    "build": "./scripts/build.sh",
+    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir .",
     "format": "prettier --write .",
-    "test": "./scripts/test.sh",
+    "pretest": "echo \"Run tests. To update snapshots run: npm t -- --test-update-snapshots\"",
+    "test": "NODE_NO_WARNINGS=1 node --test --experimental-test-coverage --experimental-test-snapshots --experimental-strip-types $@ **/test.ts",
     "prepublishOnly": "node --run build"
   },
   "devDependencies": {
-    "esbuild": "^0.27.2",
+    "@types/node": "^25.3.0",
     "prettier": "^3.0.3",
+    "tsup": "^8.5.1",
     "typescript": "^5.2.2"
   }
 }

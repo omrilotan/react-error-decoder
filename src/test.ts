@@ -1,12 +1,5 @@
-import {
-	afterEach,
-	before,
-	beforeEach,
-	describe,
-	snapshot,
-	test,
-} from "node:test";
-import { deepEqual, equal, ok } from "node:assert/strict";
+import { describe, test } from "node:test";
+import { deepEqual, equal } from "node:assert/strict";
 import { decode } from "./index.ts";
 
 describe("react-error-decoder", (): void => {
@@ -32,6 +25,10 @@ describe("react-error-decoder", (): void => {
 		[
 			"Minified React error #152; visit https://legacy.reactjs.org/docs/error-decoder.html?invariant=152&args[]=NGABuilder for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
 			"Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.",
+		],
+		[
+			"Minified React error #72; visit https://legacy.reactjs.org/docs/error-decoder.html?invariant=72&args[]=div&args[]=header&args[]=footer for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+			"Expected onSetParent() and onSetChildren() to be consistent (div has parents header and footer).",
 		],
 	].forEach(([input, message]: string[]) =>
 		test("decodes messages successfully", (): void => {
