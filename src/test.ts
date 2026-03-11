@@ -9,8 +9,8 @@ const require = createRequire(import.meta.url);
 
 function getSnapshotPath() {
 	const filename = new URL(import.meta.url).pathname;
-  const { name, dir } = path.parse(filename);
-  return path.resolve(dir, `${name}.ts.snapshot`);
+	const { name, dir } = path.parse(filename);
+	return path.resolve(dir, `${name}.ts.snapshot`);
 }
 
 describe("react-error-decoder", (): void => {
@@ -80,7 +80,9 @@ describe("react-error-decoder", (): void => {
 				for (const key in decode.collection) {
 					if (!Object.hasOwn(decode.collection, key)) continue;
 					if (list[key] !== decode.collection[key]) {
-						errors.push(`Expected item [${key}] to be "${decode.collection[key]}" but got "${list[key]}"`);
+						errors.push(
+							`Expected item [${key}] to be "${decode.collection[key]}" but got "${list[key]}"`,
+						);
 					}
 				}
 			}
