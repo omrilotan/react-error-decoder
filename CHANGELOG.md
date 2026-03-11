@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.1.13
+
+- Phrasing update for 485
+
 ## 2.1.12
 
 - Internal changes (No user-facing changes)

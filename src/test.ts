@@ -1,6 +1,17 @@
-import { describe, test } from "node:test";
+import { describe, snapshot, test } from "node:test";
 import { deepEqual, equal } from "node:assert/strict";
 import { decode } from "./index.ts";
+import { fail } from "node:assert";
+import path from "node:path";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+
+function getSnapshotPath() {
+	const filename = new URL(import.meta.url).pathname;
+  const { name, dir } = path.parse(filename);
+  return path.resolve(dir, `${name}.ts.snapshot`);
+}
 
 describe("react-error-decoder", (): void => {
 	test("get all details for error", (): void => {
@@ -54,6 +65,31 @@ describe("react-error-decoder", (): void => {
 		"Minified React error #1: Something else has gone wrong. https://www.facebook.com",
 		"Minified React error #1: Something else has gone wrong. https://www.facebook.com?invariant=900",
 	].forEach((message: string): void => equal(decode(message), message));
-	test("updated snapshot", (context): void =>
-		context.assert.snapshot(decode.collection));
+	test("updated snapshot", async (context): Promise<void> => {
+		try {
+			context.assert.snapshot(decode.collection);
+		} catch (error) {
+			const snapshotModule = require(getSnapshotPath());
+			const list = JSON.parse(Object.values(snapshotModule)[0] as string);
+			const errors = [];
+			if (Object.keys(list).length !== Object.keys(decode.collection).length) {
+				errors.push(
+					`Expected ${Object.keys(decode.collection).length} items but got ${Object.keys(list).length}`,
+				);
+			} else {
+				for (const key in decode.collection) {
+					if (!Object.hasOwn(decode.collection, key)) continue;
+					if (list[key] !== decode.collection[key]) {
+						errors.push(`Expected item [${key}] to be "${decode.collection[key]}" but got "${list[key]}"`);
+					}
+				}
+			}
+			if (errors.length > 0) {
+				console.error("Snapshot mismatch:");
+				fail(["Snapshot does not match collection:", ...errors].join("\n"));
+			} else {
+				fail(error);
+			}
+		}
+	});
 });
