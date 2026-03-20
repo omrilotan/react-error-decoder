@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.1.14
+
+- Add 582, 583
+
 ## 2.1.13
 
 - Phrasing update for 485
