@@ -65,6 +65,10 @@ describe("react-error-decoder", (): void => {
 				"https://react.dev/link/hydration-mismatchundefined",
 			].join("\n"),
 		],
+		[
+			"minified react error #152; visit https://reactjs.org/docs/error-decoder.html?invariant=152&args[]=ngabuilder for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+			"Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.",
+		],
 	].forEach(([input, message]: string[]) =>
 		test("decodes messages successfully", (): void => {
 			equal(decode(input), message);

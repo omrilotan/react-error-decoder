@@ -7,9 +7,14 @@ const parse = (str: string, args: string[], i = 0): string =>
 	str.replace(/%s/g, () => args[i++]);
 
 /**
+ * This pattern is the basic identifier for a React minified error message.
+ */
+const messagePattern = /^Minified React error/i;
+
+/**
  * URL pattern to match the URL in the error message
  */
-const pattern = /https?:\/\/[^\s]+/;
+const urlPattern = /https?:\/\/[^\s]+/;
 
 /**
  * Invariant switched to URL pattern
@@ -38,16 +43,15 @@ function decodeDetails(message: string): {
 		invariant: undefined,
 		url: undefined,
 	};
-	if (!message.startsWith("Minified React error")) return fallback;
+	if (!messagePattern.test(message)) return fallback;
 
-	const [url] = message.match(pattern) || [];
+	const [url] = message.match(urlPattern) || [];
 	if (!url) return fallback;
 
 	const { searchParams } = new URL(url);
 	const args = searchParams.getAll("args[]");
 	const invariant =
 		searchParams.get("invariant") || url.match(invariantPattern)?.at?.(1);
-	url.includes("react.dev") && console.log({ invariant });
 	if (!invariant) return fallback;
 	if (!Object.hasOwn(collection, invariant)) return fallback;
 
