@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.0
+
+- Support [react dev format with invariant number in URL path](https://github.com/facebook/react/commit/b3003047101b4c7a643788a8faf576f7e370fb45) (e.g. https://react.dev/errors/123) in addition to query param in older links
+
 ## 2.1.14
 
 - Add 582, 583

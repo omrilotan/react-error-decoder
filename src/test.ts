@@ -41,6 +41,30 @@ describe("react-error-decoder", (): void => {
 			"Minified React error #72; visit https://legacy.reactjs.org/docs/error-decoder.html?invariant=72&args[]=div&args[]=header&args[]=footer for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
 			"Expected onSetParent() and onSetChildren() to be consistent (div has parents header and footer).",
 		],
+		[
+			"Minified React error #72; visit https://legacy.reactjs.org/docs/error-decoder.html?invariant=72&args[]=div&args[]=header&args[]=footer for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+			"Expected onSetParent() and onSetChildren() to be consistent (div has parents header and footer).",
+		],
+		[
+			"Minified React error #40; visit http://facebook.github.io/react/docs/error-decoder.html?invariant=40 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+			"Target container is not a DOM element.",
+		],
+		[
+			"Minified React error #418; visit https://react.dev/errors/418?args[]=div for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+			[
+				"Hydration failed because the server rendered div didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:",
+				"",
+				"- A server/client branch `if (typeof window !== 'undefined')`.",
+				"- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.",
+				"- Date formatting in a user's locale which doesn't match the server.",
+				"- External changing data without sending a snapshot of it along with the HTML.",
+				"- Invalid HTML tag nesting.",
+				"",
+				"It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.",
+				"",
+				"https://react.dev/link/hydration-mismatchundefined",
+			].join("\n"),
+		],
 	].forEach(([input, message]: string[]) =>
 		test("decodes messages successfully", (): void => {
 			equal(decode(input), message);

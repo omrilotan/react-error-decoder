@@ -12,6 +12,11 @@ const parse = (str: string, args: string[], i = 0): string =>
 const pattern = /https?:\/\/[^\s]+/;
 
 /**
+ * Invariant switched to URL pattern
+ */
+const invariantPattern = /https?:\/\/react\.dev\/errors\/(\d+)/;
+
+/**
  * Accepts a React minified message and returns a decoded message, number and url
  */
 function decodeDetails(message: string): {
@@ -40,7 +45,9 @@ function decodeDetails(message: string): {
 
 	const { searchParams } = new URL(url);
 	const args = searchParams.getAll("args[]");
-	const invariant = searchParams.get("invariant");
+	const invariant =
+		searchParams.get("invariant") || url.match(invariantPattern)?.at?.(1);
+	url.includes("react.dev") && console.log({ invariant });
 	if (!invariant) return fallback;
 	if (!Object.hasOwn(collection, invariant)) return fallback;
 
