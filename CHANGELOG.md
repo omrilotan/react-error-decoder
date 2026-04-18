@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.2
+
+- Add 584-593
+
 ## 2.2.1
 
 - Support case insensitive minified error message (e.g. "Minified React error" or "minified react error")
