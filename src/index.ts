@@ -9,7 +9,7 @@ const parse = (str: string, args: string[], i = 0): string =>
 /**
  * This pattern is the basic identifier for a React minified error message.
  */
-const messagePattern = /^Minified React error/i;
+const messagePattern = /^(Error: )?Minified React error/i;
 
 /**
  * URL pattern to match the URL in the error message
@@ -55,7 +55,7 @@ function decodeDetails(message: string): {
 	if (!invariant) return fallback;
 	if (!Object.hasOwn(collection, invariant)) return fallback;
 
-	const template = collection[invariant];
+	const template = collection[invariant as keyof typeof collection];
 	return {
 		message: parse(template, args),
 		invariant,

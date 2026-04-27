@@ -74,6 +74,13 @@ describe("react-error-decoder", (): void => {
 			equal(decode(input), message);
 		}),
 	);
+	test('Can accept the "Error: " prefix', (): void => {
+		const input =
+			"Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.";
+		const message =
+			"Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.";
+		equal(decode(input), message);
+	});
 
 	test("Leave an error not in dictionary as is", (): void => {
 		const input =
@@ -107,9 +114,12 @@ describe("react-error-decoder", (): void => {
 			} else {
 				for (const key in decode.collection) {
 					if (!Object.hasOwn(decode.collection, key)) continue;
-					if (list[key] !== decode.collection[key]) {
+					if (
+						list[key] !==
+						decode.collection[key as keyof typeof decode.collection]
+					) {
 						errors.push(
-							`Expected item [${key}] to be "${decode.collection[key]}" but got "${list[key]}"`,
+							`Expected item [${key}] to be "${decode.collection[key as keyof typeof decode.collection]}" but got "${list[key]}"`,
 						);
 					}
 				}
@@ -118,7 +128,7 @@ describe("react-error-decoder", (): void => {
 				console.error("Snapshot mismatch:");
 				fail(["Snapshot does not match collection:", ...errors].join("\n"));
 			} else {
-				fail(error);
+				fail(error as Error);
 			}
 		}
 	});

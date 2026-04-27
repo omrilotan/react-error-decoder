@@ -1,0 +1,22 @@
+doctype html
+- const version = process.env.npm_package_version
+html(lang="en-US")
+	head
+		title React Error Decoder
+		meta(charset="utf-8")
+		meta(name="description" content="Decode React error codes into human-readable messages with the React Error Decoder tool. Paste your React error code to get detailed explanations and solutions.")
+		meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes")
+		link(rel="icon shortcut" href="https://react.dev/favicon.ico" type="image/x-icon")
+		link(rel="author" href="https://github.com/omrilotan/react-error-decoder")
+		style
+			include ./style.css
+	body
+		h1 React Error Decoder
+		main
+			input(type="text" id="error" placeholder="Paste your React error here")
+			p
+			aside This tool is powered by .
+				a(href="https://www.npmjs.com/package/react-error-decoder" target="_blank") react-error-decoder version #{version}
+	script
+		include ../out/script.global.js
+

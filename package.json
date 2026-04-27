@@ -1,6 +1,6 @@
 {
   "name": "react-error-decoder",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "⚛︎ Decode React minified error message",
   "keywords": [
     "react",
@@ -49,7 +49,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir .",
     "format": "prettier --write .",
     "test": "./scripts/test.sh",
-    "prepublishOnly": "node --run build"
+    "prepublishOnly": "node --run build",
+    "page": "tsup page/script.js --format iife --out-dir ./out && npx pug-cli page/index.pug --out ./out --pretty"
   },
   "devDependencies": {
     "@types/node": "^25.3.0",

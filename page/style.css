@@ -1,0 +1,83 @@
+:root {
+	--color-background: #e5e5e5;
+	--color-background-middle: #eee;
+	--color-background-highlight: #fff;
+	--color-foreground: #333;
+	--color-foreground-shadow: rgba(13, 39, 80, 0.2549019607843137);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+input {
+	font:
+		100 100%/1.4 -apple-system,
+		BlinkMacSystemFont,
+		Helvetica Neue,
+		Helvetica,
+		Lucida Grande,
+		Arial,
+		sans-serif;
+}
+
+html,
+body {
+	min-height: 100%;
+}
+
+body {
+	background: linear-gradient(
+		145deg,
+		var(--color-background-highlight),
+		var(--color-background-middle),
+		var(--color-background)
+	);
+	height: 100vh;
+}
+
+body,
+input {
+	color: var(--color-foreground);
+	text-shadow: var(--color-background-highlight) 1px 1px 0;
+}
+
+body,
+h1,
+main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	font-size: 3.5rem;
+	font-weight: 700;
+	margin: 1em auto;
+}
+
+input,
+p {
+	font-size: 1.7rem;
+}
+
+input {
+	background: var(--color-background);
+	width: 80%;
+	padding: 0.5em;
+	box-sizing: border-box;
+	border-radius: 0.5em;
+	box-shadow:
+		inset var(--color-foreground-shadow) 0.5em 0.5em 0.5em,
+		inset var(--color-background-highlight) -0.5em -0.5em 0.5em;
+	border-width: 0;
+	height: 2em;
+}
+
+p {
+	padding: 1em;
+}
