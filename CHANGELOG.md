@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.3.1
+
+- Add 598
+
 ## 2.3.0
 
 - Can accept the "Error: " prefix in the minified error message (e.g. "Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.")
