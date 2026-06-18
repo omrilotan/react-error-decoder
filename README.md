@@ -47,3 +47,48 @@ decode.details('Minified React error #130; visit https://reactjs.org/docs/error-
 ```
 
 > Uses [source list from React repo](https://github.com/facebook/react/blob/main/scripts/error-codes/codes.json)
+
+## The Centralized Logging Middleware use case
+
+```mermaid
+flowchart LR
+  A[Frontend App] -->|POST error payload| B[Log Server Middleware]
+  B -->|Decode, Enrich| F[(Database or Third-Party Logger)]
+```
+
+When your frontend catches an error and POSTs it to &log-server, you can intercept it on &log-server and decode it before it hits your database or third-party logger.
+
+```ts
+import { decode } from "react-error-decoder";
+const {
+  message,
+  ...rest
+} = request.body.errors.at(0) as {
+  message: string;
+  [key: string]: unknown;
+};
+const logRecord = {
+  // Magically decode the minified React error message
+  message: decode(message),
+  // Keep the rest of the error payload as is
+  ...rest,
+  // enrich with whatever you want
+  userAgent: request.headers["user-agent"],
+  uid: request.cookies["uid"],
+  …
+};
+```
+
+Go one step further and add details that can be used for analytics
+
+```ts
+const {
+  message,
+  invariant: reactErrorId
+} = decode.details(message);
+const logRecord = {
+  message,
+  reactErrorId, // "130"
+  …
+};
+```
