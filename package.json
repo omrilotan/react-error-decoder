@@ -1,6 +1,6 @@
 {
   "name": "react-error-decoder",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "⚛︎ Decode React minified error message",
   "keywords": [
     "react",
@@ -53,9 +53,9 @@
     "page": "tsup page/script.js --format iife --out-dir ./out && npx pug-cli page/index.pug --out ./out --pretty"
   },
   "devDependencies": {
-    "@types/node": "^25.3.0",
+    "@types/node": "^26.1.2",
     "prettier": "^3.0.3",
     "tsup": "^8.5.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.7.3"
   }
 }
