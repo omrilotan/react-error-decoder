@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.3.6
+
+- Add 609-611
+
 ## 2.3.5
 
 - Add 608. Update 603
