@@ -46,6 +46,7 @@
   "types": "index.d.ts",
   "scripts": {
     "prepare": "curl https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json > src/collection.json",
+    "update": "./scripts/update/procedure.sh",
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir .",
     "format": "prettier --write .",
     "test": "./scripts/test.sh",

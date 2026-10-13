@@ -1,12 +1,14 @@
 name: Release
 on:
   - push
+  - workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -20,6 +22,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: npm run page
       - name: commit auto fixes
+        id: autofix
         env:
           USERNAME: ${{ github.actor }}
           BRANCH: ${{ github.ref_name }}
@@ -30,6 +33,7 @@ jobs:
             git config --global user.name "${USERNAME}"
             git commit -am "😎 Autofix"
             git push origin $BRANCH
+            echo "autofixed=true" >> "$GITHUB_OUTPUT"
             exit 1
           fi
       - name: Build and Publish
@@ -47,3 +51,19 @@ jobs:
           publish_dir: ./out
           publish_branch: gh-pages
           force_orphan: true
+      - name: Create issue on failure
+        if: failure() && steps.autofix.outputs.autofixed != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          WORKFLOW: ${{ github.workflow }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TITLE="${WORKFLOW} workflow failed"
+          BODY="Run: ${RUN_URL}"
+          EXISTING="$(gh issue list --repo "${REPO}" --state open --search "\"${TITLE}\" in:title" --json number --jq '.[0].number')"
+          if [ -n "${EXISTING}" ]; then
+            gh issue comment "${EXISTING}" --repo "${REPO}" --body "${BODY}"
+          else
+            gh issue create --repo "${REPO}" --title "${TITLE}" --body "${BODY}" --assignee omrilotan
+          fi

@@ -92,3 +92,13 @@ const logRecord = {
   …
 };
 ```
+
+## Maintenance
+
+When React adds or changes error codes in [codes.json](https://github.com/facebook/react/blob/main/scripts/error-codes/codes.json), sync this package:
+
+```sh
+npm run update
+```
+
+This fetches the latest `codes.json`, updates the test snapshot, bumps the patch version and adds a CHANGELOG entry. Review the diff and commit.
